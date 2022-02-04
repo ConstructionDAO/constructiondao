@@ -19,37 +19,38 @@ function MintProposal() {
   const [pdfDone, setPDFDone] = useState(false)
   const [uploadDone, setUploadDone] = useState(false)
 
-  //   async function contractCall(object) {
-  //     const web3Provider = await Moralis.enableWeb3()
-  //     const ethers = Moralis.web3Library
+  // async function contractCall(object) {
+  //   const web3Provider = await Moralis.enableWeb3()
+  //   const ethers = Moralis.web3Library
 
-  //     const contract = new ethers.Contract(
-  //       TokenAddress,
-  //       TokenABI,
-  //       web3Provider.getSigner()
+  //   const contract = new ethers.Contract(
+  //     TokenAddress,
+  //     TokenABI,
+  //     web3Provider.getSigner()
+  //   )
+
+  //   const price = ethers.utils.parseEther(object.get('recordPrice').toString())
+
+  //   contract
+  //     .createAlbum(
+  //       object.id,
+  //       object.get('recordCount'),
+  //       '4',
+  //       price,
+  //       object.get('royaltyPrice')
   //     )
-
-  //     const price = ethers.utils.parseEther(object.get('recordPrice').toString())
-
-  //     contract
-  //       .createAlbum(
-  //         object.id,
-  //         object.get('recordCount'),
-  //         '4',
-  //         price,
-  //         object.get('royaltyPrice')
+  //     .then((result) => {
+  //       contract.setApprovalForAll(marketplaceAddress, true)
+  //       alert(
+  //         'successful, please confirm direct approval for marketplace via metamask'
   //       )
-  //       .then((result) => {
-  //         contract.setApprovalForAll(marketplaceAddress, true)
-  //         alert(
-  //           'successful, please confirm direct approval for marketplace via metamask'
-  //         )
-  //         setUploadDone(true)
-  //         alert(
-  //           "You find the item in your collection. From there you'll be able to list it on the marketplace"
-  //         )
-  //       })
-  //   }
+  //       setUploadDone(true)
+  //       alert(
+  //         "You find the item in your collection. From there you'll be able to list it on the marketplace"
+  //       )
+  //     })
+  // }
+
   async function createProposal() {
     setIsUploading(true)
 
@@ -108,7 +109,7 @@ function MintProposal() {
     proposal.set('fundingGoal', parseFloat(fundingGoal))
     proposal.set('projectPDF', ipfsFiles)
     proposal.save().then((object) => {
-      // contractCall(object)
+      contractCall(object)
       console.log(object)
     })
   }

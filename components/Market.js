@@ -14,13 +14,20 @@ export default function Market() {
     isWeb3EnableLoading,
   } = useMoralis()
 
-  const [proposal, setAlbums] = useState([])
+  const [proposal, setProposal] = useState([])
 
   useEffect(() => {
     if (isAuthenticated && !isWeb3Enabled && !isWeb3EnableLoading) enableWeb3()
     const Proposal = Moralis.Object.extend('Proposal')
     const query = new Moralis.Query(Proposal)
-    query.notEqualTo('owner', 'notactive')
+    query.find().then((results) => {
+      if (user) {
+        setProposal(results)
+      }
+    })
+
+    // query.notEqualTo('owner', 'notactive')
+
     // query.equalTo("owner", user.get("ethAddress"));
 
     //   Moralis.Cloud.run("getDownloadTokens", {
@@ -40,11 +47,11 @@ export default function Market() {
         {proposal.map((data, index) => (
           <CardProjects data={data} key={index} />
         ))}
+        {/* <CardProjects />
         <CardProjects />
         <CardProjects />
         <CardProjects />
-        <CardProjects />
-        <CardProjects />
+        <CardProjects /> */}
         <Bottom />
       </div>
     </div>

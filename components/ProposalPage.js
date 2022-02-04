@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
 import { useMoralis } from 'react-moralis'
 import CardVoted from './CardVoted'
-import MintVote from './MintVote'
+import MintProposal from './MintProposal'
 
-function Votes() {
+function ProposalPage() {
   const {
     user,
     Moralis,
@@ -36,18 +36,18 @@ function Votes() {
     //     console.log(results);
     //   });
   }, [isAuthenticated, isWeb3Enabled, user])
-  const [isVotes, setIsVotes] = useState(true)
-  const [mintVotes, setMintVotes] = useState(false)
+  const [isNew, setIsNew] = useState(false)
+  const [isCreated, setIsCreated] = useState(true)
   const [voteBalance, setVoteBalance] = useState(false)
 
   function modalMintVote() {
-    setIsVotes(false)
-    setMintVotes(true)
+    setIsNew(false)
+    setIsCreated(true)
   }
 
   function modalseeVotes() {
-    setIsVotes(true)
-    setMintVotes(false)
+    setIsNew(true)
+    setIsCreated(false)
   }
   // function openMintVote() {
   //   setMinting(true)
@@ -67,28 +67,28 @@ function Votes() {
   return (
     <div className="flex h-screen w-full flex-col items-center">
       <div className="flex flex-row space-x-48">
-        {isVotes ? (
+        {isCreated ? (
           <h1 className="mt-4 mb-8 text-xl font-extrabold italic text-gray-600 underline">
-            Votes
-          </h1>
-        ) : (
-          <h1
-            onClick={modalseeVotes}
-            className="mt-4 mb-8 text-xl font-extrabold italic text-gray-600 hover:cursor-pointer"
-          >
-            Votes
-          </h1>
-        )}
-        {mintVotes ? (
-          <h1 className="mt-4 mb-8 text-xl font-extrabold italic text-gray-600 underline">
-            Mint Votes
+            Your Proposals
           </h1>
         ) : (
           <h1
             onClick={modalMintVote}
             className="mt-4 mb-8 text-xl font-extrabold italic text-gray-600 hover:cursor-pointer"
           >
-            Mint Votes
+            Your Proposals
+          </h1>
+        )}
+        {isNew ? (
+          <h1 className="mt-4 mb-8 text-xl font-extrabold italic text-gray-600 underline">
+            Mint Proposal
+          </h1>
+        ) : (
+          <h1
+            onClick={modalseeVotes}
+            className="mt-4 mb-8 text-xl font-extrabold italic text-gray-600 hover:cursor-pointer"
+          >
+            Mint Proposal
           </h1>
         )}
       </div>
@@ -97,7 +97,7 @@ function Votes() {
         {/* {<button onClick={openMintVote}>get votes</button>}
         {<button onClick={viewVoteBalance}>vote balance</button>} */}
       </div>
-      {isVotes ? (
+      {isCreated ? (
         <div className=" flex w-9/12 flex-col items-center justify-center">
           {proposal.map((data, index) => (
             <CardVoted data={data} key={index} />
@@ -105,7 +105,7 @@ function Votes() {
         </div>
       ) : (
         <div className=" flex w-9/12 flex-col items-center justify-center">
-          <MintVote />
+          <MintProposal />
         </div>
       )}
       {/* {minting && <MintVote />}
@@ -120,4 +120,4 @@ function Votes() {
   )
 }
 
-export default Votes
+export default ProposalPage
