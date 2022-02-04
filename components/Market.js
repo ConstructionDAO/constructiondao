@@ -33,6 +33,9 @@ export default function Market() {
 
   return (
     <div className="flex h-screen w-full flex-col items-center">
+      <h1 className="mt-4 mb-8 text-xl font-extrabold italic text-gray-600">
+        Proposals
+      </h1>
       <div className=" flex w-9/12 flex-col items-center justify-center">
         {proposal.map((data, index) => (
           <CardProjects data={data} key={index} />

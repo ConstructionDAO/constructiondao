@@ -115,10 +115,11 @@ function MintProposal() {
 
   return (
     <div className="flex w-full flex-col items-center text-black">
+      <div className="mt-4 mb-4 text-xl font-extrabold italic text-gray-600">
+        Propose Project
+      </div>
+
       <div className="flex w-4/12 flex-col items-center justify-center rounded-xl border-r border-b-2 shadow-xl">
-        <div className="mx-2 mt-2 w-11/12 items-center border-b border-blue-600 py-2 text-center text-lg font-bold text-gray-800 ">
-          Propose Project
-        </div>
         <div className="mt-4 mb-4 flex w-full flex-col items-center justify-center space-y-4">
           <div className=" flex w-11/12 flex-row justify-evenly">
             <div className="mt-4 mb-4 flex w-full flex-col items-center justify-center space-y-4">
@@ -146,7 +147,7 @@ function MintProposal() {
                   name="fundingGoal"
                   id="fundingGoal"
                   type="text"
-                  placeholder="Funding Goal"
+                  placeholder="Total Vote Goal"
                   className="outline:none bg-transparent text-center focus:outline-none"
                 />
               </div>

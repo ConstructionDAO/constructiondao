@@ -26,6 +26,10 @@ function Profile() {
   }
   return (
     <div className="flex h-screen w-full flex-col items-center">
+      <h1 className="mt-4 mb-8 text-xl font-extrabold italic text-gray-600">
+        Votes
+      </h1>
+
       <div className="flex flex-row space-x-16">
         {/* {<button onClick={openVoted}>voted</button>} */}
         {/* {<button onClick={openMintVote}>get votes</button>}

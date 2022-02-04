@@ -19,32 +19,34 @@ export default function Header() {
   }
 
   return (
-    <div className="sticky top-0  flex h-24 items-center justify-between rounded-xl border-b-2 border-blue-300 bg-gradient-to-b from-gray-900/5 to-blue-300 px-10 shadow-lg">
+    <div className="sticky top-0  flex h-24 items-center justify-between border-b-2 border-blue-300 bg-gradient-to-b from-gray-900/5 to-blue-300 px-10 shadow-lg">
       <Image
         width={100}
         height={100}
         src="/daoCone.png"
-        className="-rotate-45"
+        className="-rotate-90"
       />
-      <h1 className="font-bold">CONSTRUCTION DAO</h1>
+      {/* <h1 className="font-bold">CONSTRUCTION DAO</h1> */}
       <div className="flex flex-row justify-between space-x-2">
         <button
-          className="flex flex-row items-center rounded-full border-b-2 border-black
+          className="flex flex-row items-center rounded-xl border-b-2 border-black
           bg-blue-300 py-2
           px-6 text-sm text-blue-800
           hover:shadow-xl active:border-b-2 active:border-blue-300 active:bg-blue-700 active:text-white"
           onClick={!isAuthenticated ? authenticate : userLogout}
         >
-          <CreditCardIcon className="h-7 w-7 pr-2" />
-          {isAuthenticated ? 'Disconnect' + '' : 'Connect Wallet'}
+          {/* <CreditCardIcon className="h-7 w-7 pr-2" /> */}
+          {isAuthenticated
+            ? 'Disconnect ' + `${user.get('username')}`
+            : 'Connect Wallet'}
         </button>
       </div>
-      <Image
+      {/* <Image
         width={100}
         height={100}
         src="/daoCone.png"
         className="rotate-45"
-      />
+      /> */}
     </div>
   )
 }
