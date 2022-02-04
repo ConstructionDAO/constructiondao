@@ -33,9 +33,9 @@ function CardProjects() {
             1000 Votes. need. Our goal is to raise 1000 Votes. need. Our goal is
           </p>
           <div className="flex flex-row items-center justify-around space-x-16 text-sm">
-            <div className="rounded-xl border-b-2 border-black bg-blue-200 p-2 text-sm text-black active:border-t active:border-blue-600 active:bg-blue-200">
+            <div className="rounded-xl border-b-2 border-black bg-blue-200 p-2 text-sm text-black hover:cursor-pointer active:border-blue-600 active:bg-blue-200">
               <div
-                className="flex flex-row items-center space-x-2 text-xs hover:cursor-pointer"
+                className="flex flex-row items-center space-x-2 text-xs "
                 onClick={viewDocuments}
               >
                 <p>Documents</p>

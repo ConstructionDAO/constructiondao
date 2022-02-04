@@ -59,7 +59,7 @@ function Modal() {
           id="email"
           name="email"
           className="bg-transparent outline-none"
-          placeholder="example@email.com"
+          placeholder="email"
         />
       </div>
       <h1>Organisation Website</h1>
@@ -68,7 +68,7 @@ function Modal() {
           type="text"
           id="socials"
           name="socials"
-          placeholder="https://insertlink.com"
+          placeholder="organisation link"
           className="bg-transparent outline-none"
         />
       </div>

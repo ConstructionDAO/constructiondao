@@ -4,7 +4,13 @@ import { useMoralis } from 'react-moralis'
 import NativeBalance from './MoralisComponents/NativeBalance'
 import Modal from './Profile/Modal'
 import ERC20Balances from '../hooks/useERC20Balances'
-import { XIcon } from '@heroicons/react/outline'
+import {
+  ClipboardCopyIcon,
+  DuplicateIcon,
+  EyeIcon,
+  EyeOffIcon,
+  XIcon,
+} from '@heroicons/react/outline'
 import MintVote from './MintVote'
 
 function CardProfile() {
@@ -41,6 +47,11 @@ function CardProfile() {
   function unHideAddress() {
     setShowAddress(true)
   }
+
+  function copyAddress() {
+    navigator.clipboard.writeText(walletAddress)
+  }
+
   return (
     <div className="flex w-full flex-col justify-evenly ">
       <div className="flex w-full flex-row justify-evenly ">
@@ -54,16 +65,26 @@ function CardProfile() {
             className="rounded-full"
           />
           <div className="mt-4 flex flex-col space-x-4">
-            {showAddress && <p className="text-sm">{walletAddress}</p>}
             {showAddress && (
-              <button className="text-xs text-gray-600" onClick={hideAddress}>
-                hide address
-              </button>
+              <div className="flex flex-row items-center space-x-2 hover:cursor-pointer">
+                <p
+                  className="text-xs active:text-blue-300"
+                  onClick={copyAddress}
+                >
+                  {walletAddress}
+                </p>
+                {showAddress && (
+                  <EyeOffIcon onClick={hideAddress} className="h-4 w-4" />
+                )}
+              </div>
             )}
             {!showAddress && (
-              <button className="text-xs text-gray-600" onClick={unHideAddress}>
-                show address
-              </button>
+              <div
+                className="flex flex-row items-center hover:cursor-pointer active:text-blue-300"
+                onClick={unHideAddress}
+              >
+                <EyeIcon className="h-4 w-4" />
+              </div>
             )}
           </div>
           {userEmail && <p>{userEmail}</p>}

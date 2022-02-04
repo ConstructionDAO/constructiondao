@@ -45,7 +45,7 @@ function CardProjects() {
             1000 Votes. need. Our goal is to raise 1000 Votes. need. Our goal is
           </p>
           <div className="flex flex-row items-center justify-around space-x-16 text-sm">
-            <div className="rounded-xl border-b-2 border-black bg-blue-200 p-2 text-sm text-black active:border-t active:border-blue-600 active:bg-blue-200">
+            <div className="rounded-xl border-b-2 border-black bg-blue-200 p-2 text-sm text-black active:border-blue-600 active:bg-blue-200">
               <div
                 className="flex flex-row items-center space-x-2 text-xs hover:cursor-pointer"
                 onClick={viewDocuments}
@@ -60,16 +60,16 @@ function CardProjects() {
       </div>
       <div className="flex w-11/12 flex-row-reverse items-end justify-items-center">
         <div className="flex flex-row-reverse items-center justify-center">
-          <div className="mx-4 rounded-xl border-b-2 border-black bg-blue-300 p-1 px-4 text-sm text-black active:border-t active:border-blue-600 active:bg-blue-200">
+          <div className="mx-4 rounded-xl border-b-2 border-black bg-blue-300 p-1 px-4 text-sm text-black active:border-blue-600 active:bg-blue-200">
             <button onClick={voteProject}>Vote</button>
           </div>
           {!isLiked ? (
             <div onClick={like}>
-              <HeartIcon className="h-5 w-5 text-gray-600" />
+              <HeartIcon className="h-5 w-5 text-gray-600 hover:cursor-pointer" />
             </div>
           ) : (
             <div onClick={dislike}>
-              <HeartIcon className="h-5 w-5 text-red-600" />
+              <HeartIcon className="h-5 w-5 text-red-600 hover:cursor-pointer" />
             </div>
           )}
         </div>
