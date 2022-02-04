@@ -36,8 +36,8 @@ function ProposalPage() {
     //     console.log(results);
     //   });
   }, [isAuthenticated, isWeb3Enabled, user])
-  const [isNew, setIsNew] = useState(false)
-  const [isCreated, setIsCreated] = useState(true)
+  const [isNew, setIsNew] = useState(true)
+  const [isCreated, setIsCreated] = useState(false)
   const [voteBalance, setVoteBalance] = useState(false)
 
   function modalMintVote() {

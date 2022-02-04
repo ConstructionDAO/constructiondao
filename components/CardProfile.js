@@ -61,7 +61,7 @@ function CardProfile() {
   return (
     <div className="flex w-full flex-col justify-evenly ">
       <div className="flex w-full flex-row justify-evenly ">
-        <div className="flex w-4/12 flex-col items-center justify-center rounded-xl border-r border-b-2 border-white shadow-xl">
+        <div className="flex w-4/12 flex-col items-center justify-center border-r border-b border-white shadow-xl">
           <h1 className="my-4">{username}</h1>
           <Image
             src="/constdao.jpeg"
@@ -131,7 +131,7 @@ function CardProfile() {
             </button>
           )}
         </div>
-        <div className="flex w-4/12 flex-col items-center rounded-xl border-r border-b-2 border-white shadow-xl">
+        <div className="flex w-4/12 flex-col items-center border-r border-b border-white shadow-xl">
           <h1 className="my-4 ">Wallet Balance</h1>
           <NativeBalance />
           <ERC20Balances />

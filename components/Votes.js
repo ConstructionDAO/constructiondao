@@ -36,8 +36,8 @@ function Votes() {
     //     console.log(results);
     //   });
   }, [isAuthenticated, isWeb3Enabled, user])
-  const [isVotes, setIsVotes] = useState(true)
-  const [mintVotes, setMintVotes] = useState(false)
+  const [isVotes, setIsVotes] = useState(false)
+  const [mintVotes, setMintVotes] = useState(true)
   const [voteBalance, setVoteBalance] = useState(false)
 
   function modalMintVote() {

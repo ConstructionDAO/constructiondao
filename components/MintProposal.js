@@ -120,7 +120,7 @@ function MintProposal() {
         Propose Project
       </div>
 
-      <div className="flex w-4/12 flex-col items-center justify-center rounded-xl border-r border-b-2 shadow-xl">
+      <div className="flex w-4/12 flex-col items-center justify-center border-r border-b shadow-xl">
         <div className="mt-4 mb-4 flex w-full flex-col items-center justify-center space-y-4">
           <div className=" flex w-11/12 flex-row justify-evenly">
             <div className="mt-4 mb-4 flex w-full flex-col items-center justify-center space-y-4">
@@ -178,7 +178,7 @@ function MintProposal() {
           <div className="flex w-11/12 flex-col border-b border-blue-600 py-1"></div>
           <div className="flex w-full flex-col items-center justify-center space-y-4 text-white">
             <div className="mx-4 rounded-xl border-b-2 border-black bg-blue-300 p-2 px-4 text-sm text-black">
-              <button onClick={createProposal}>Mint Items</button>
+              <button onClick={createProposal}>Create Proposal</button>
             </div>
             {isUploading && <UploadStarted />}
             {pictureDone && <PictureDone />}

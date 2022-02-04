@@ -67,9 +67,9 @@ function MintVote() {
 
   return (
     <div className="flex w-full flex-col items-center text-black">
-      <div className="flex w-6/12 flex-col items-center justify-center rounded-xl border-r border-b-2 shadow-xl">
+      <div className="flex w-6/12 flex-col items-center justify-center border-r border-b shadow-xl">
         <div className="mx-2 mt-2 w-11/12 items-center border-b border-blue-600 py-2 text-center text-lg font-bold text-gray-800 ">
-          Mint Votes
+          Mint CDAO
         </div>
         <div className="mt-4 mb-4 flex w-full flex-col items-center justify-center space-y-4">
           <div className=" flex w-11/12 flex-row justify-evenly">
@@ -79,7 +79,7 @@ function MintVote() {
                   You require CDAO Governance Tokens to vote or create a
                   proposal
                 </p>
-                <p>1 CDAO = 1 DAO</p>
+                <p>1 CDAO = 1 DAI</p>
               </p>
               <div className="z-50 flex w-4/12 max-w-2xl flex-col rounded-xl border-2 border-blue-300/50 bg-transparent px-4 py-1 opacity-95 shadow-xl hover:border-blue-800 ">
                 <input
