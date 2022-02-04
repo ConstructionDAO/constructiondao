@@ -19,7 +19,7 @@ function Modal() {
   }, [isAuthenticated, isWeb3Enabled])
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
+    // e.preventDefault()
 
     const username = document.getElementById('username').value
     const email = document.getElementById('email').value
@@ -40,7 +40,7 @@ function Modal() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="mb-4 flex w-96 flex-col items-center justify-center space-y-2 text-center"
+      className="mt-4 mb-4 flex w-96 flex-col items-center justify-center space-y-2 text-center"
     >
       <h1>Username</h1>
       <div className="z-50 flex w-9/12 max-w-2xl flex-col rounded-full border-2 border-blue-300/50 bg-transparent px-4 py-1 opacity-95 shadow-xl hover:border-blue-800">

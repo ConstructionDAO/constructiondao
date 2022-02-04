@@ -25,7 +25,7 @@ export default function Navbar() {
 
   return (
     <div className="lg:space-x-18 flex h-16 items-center justify-center space-x-16">
-      <div className="flex flex-row space-x-12 rounded-xl bg-transparent bg-gray-200 p-2 lg:space-x-24">
+      <div className="flex flex-row space-x-12 rounded-xl bg-transparent bg-gray-200 p-2 text-gray-700 lg:space-x-24">
         <button onClick={seeProjects}>Projects</button>
 
         <button onClick={seeProfile}>Profile</button>

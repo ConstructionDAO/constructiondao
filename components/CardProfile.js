@@ -51,6 +51,12 @@ function CardProfile() {
   function copyAddress() {
     navigator.clipboard.writeText(walletAddress)
   }
+  function copyEmail() {
+    navigator.clipboard.writeText(userEmail)
+  }
+  function navigateLink() {
+    window.open(userLink)
+  }
 
   return (
     <div className="flex w-full flex-col justify-evenly ">
@@ -87,8 +93,24 @@ function CardProfile() {
               </div>
             )}
           </div>
-          {userEmail && <p>{userEmail}</p>}
-          {userLink && <p>{userLink}</p>}
+          <div className="mt-4 flex flex-col items-center space-y-2">
+            {userEmail && (
+              <p
+                className="hover:cursor-pointer active:text-blue-300"
+                onClick={copyEmail}
+              >
+                {userEmail}
+              </p>
+            )}
+            {userLink && (
+              <p
+                className="hover:cursor-pointer active:text-blue-300"
+                onClick={navigateLink}
+              >
+                {userLink}
+              </p>
+            )}
+          </div>
 
           {!editModal && (
             <button
