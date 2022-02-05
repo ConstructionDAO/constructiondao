@@ -39,7 +39,7 @@ export default function Market() {
   }, [isAuthenticated, isWeb3Enabled, user])
 
   return (
-    <div className="flex h-screen w-full flex-col items-center">
+    <div className="flex h-screen w-full flex-col items-center overflow-y-scroll scrollbar-hide">
       <h1 className="mt-4 mb-8 text-xl font-extrabold italic text-gray-600">
         Active Proposals
       </h1>

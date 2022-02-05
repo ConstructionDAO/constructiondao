@@ -10,9 +10,6 @@ function Profile() {
       <div className="flex w-9/12 flex-col">
         <CardProfile />
       </div>
-      <div className="mt-16 flex flex-col items-center justify-center">
-        <Bottom />
-      </div>
     </div>
   )
 }

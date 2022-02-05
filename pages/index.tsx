@@ -24,7 +24,7 @@ export default function Home() {
         <link rel="icon" href="/cdao-fin.svg" />
       </Head>
       <TopFix />
-      <main className="flex h-screen overflow-y-scroll scrollbar-hide">
+      <main className="flex h-screen">
         <Market />
       </main>
     </div>
