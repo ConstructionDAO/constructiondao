@@ -30,7 +30,7 @@ export default function Header() {
       <Image
         width={150}
         height={50}
-        src="/cdao7.png"
+        src="/cdao-logo-1.svg"
         className="flex items-center justify-center"
       />
       <div className="flex flex-row items-center justify-between space-x-2">

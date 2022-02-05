@@ -22,7 +22,6 @@ function CardProfile() {
   const [userEmail, setUserEmail] = useState()
   const [userLink, setUserLink] = useState()
   const [userAvatar, setUserAvatar] = useState()
-  const [userFile, setUserFile] = useState()
   const [showAddress, setShowAddress] = useState(true)
 
   useEffect(() => {
@@ -31,8 +30,7 @@ function CardProfile() {
       setWalletAddress(user.get('ethAddress'))
       setUserEmail(user.get('email'))
       setUserLink(user.get('url'))
-      setUserAvatar(user.get('avatar'))
-      setUserFile(user.get('file'))
+      setUserAvatar(user.get('file'))
     }
     console.log(userAvatar)
   }, [isAuthenticated, user, isWeb3Enabled])
@@ -55,20 +53,20 @@ function CardProfile() {
     navigator.clipboard.writeText(userEmail)
   }
   function navigateLink() {
-    window.open(userLink)
+    window.open(props.data.get('projectPDF'))
   }
 
   return (
-    <div className="flex w-full flex-col justify-evenly ">
+    <div className="flex w-full flex-col justify-evenly">
       <div className="flex w-full flex-row justify-evenly ">
         <div className="flex w-4/12 flex-col items-center justify-center border-r border-b border-white shadow-xl">
           <h1 className="my-4">{username}</h1>
           <Image
-            src="/constdao.jpeg"
             // src={userAvatar}
-            width={125}
-            height={125}
-            className="rounded-full"
+            src="/cdao-fin.svg"
+            width={100}
+            height={100}
+            className="rounded-xl"
           />
           <div className="mt-4 flex flex-col space-x-4">
             {showAddress && (

@@ -19,8 +19,8 @@ function votes() {
   return (
     <div className="h-screen overflow-hidden bg-gradient-to-b from-white  via-white to-blue-300 ">
       <Head>
-        <title>Construct Dao</title>
-        <link rel="icon" href="/construct.png" />
+        <title>Construction DAO - Votes</title>
+        <link rel="icon" href="/cdao-fin.svg" />
       </Head>
       <TopFix />
       <main className="flex h-screen overflow-y-scroll scrollbar-hide">

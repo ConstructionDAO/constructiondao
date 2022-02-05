@@ -17,8 +17,7 @@ const ERC20Balances = (props) => {
               className="z-50 mt-4 flex w-56 max-w-2xl flex-row items-center justify-center space-x-2 rounded-xl border-2 border-blue-300/50 bg-transparent opacity-95 shadow-xl hover:border-blue-800"
             >
               <img
-                src={'https://polygonscan.com/images/svg/brands/polygon.svg'}
-                // || "https://snowtrace.io/images//empty-token.png" }
+                src="/polygon_logo.svg"
                 alt="nologo"
                 width="20px"
                 height="20px"

@@ -47,11 +47,6 @@ export default function Market() {
         {proposal.map((data, index) => (
           <CardProjects data={data} key={index} />
         ))}
-        {/* <CardProjects />
-        <CardProjects />
-        <CardProjects />
-        <CardProjects />
-        <CardProjects /> */}
         <Bottom />
       </div>
     </div>

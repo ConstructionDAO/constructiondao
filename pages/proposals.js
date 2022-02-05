@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import MintProposal from '../components/MintProposal'
+import Login from '../components/Login'
 import TopFix from '../components/Topfix'
 import { useMoralis } from 'react-moralis'
 import { useEffect, useState } from 'react'
@@ -20,8 +20,8 @@ function proposals() {
   return (
     <div className="h-screen overflow-hidden bg-gradient-to-b from-white  via-white to-blue-300 ">
       <Head>
-        <title>Construct Dao</title>
-        <link rel="icon" href="/construct.png" />
+        <title>Construction DAO - New Prop</title>
+        <link rel="icon" href="/cdao-fin.svg" />
       </Head>
       <TopFix />
       <main className="flex h-screen overflow-y-scroll scrollbar-hide">

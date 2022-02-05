@@ -23,9 +23,7 @@ function CardProjects(props) {
   }
 
   function viewDocuments() {
-    // execute viewing
-    alert('successfully viewed')
-    // window.open('insertlink')
+    window.open(props.data.get('projectPDF'))
   }
 
   function like() {
@@ -41,12 +39,14 @@ function CardProjects(props) {
         <div className="relative ml-6 flex w-6/12 flex-col items-center">
           <h1 className=" my-2">{props.data.get('projectTitle')}</h1>
           <Image
-            src="/constdao.jpeg"
+            src={props.data.get('projectPicture')}
             width={100}
             height={100}
             className="rounded-xl"
           />
-          <p className="mt-2 text-sm font-thin">{props.data.get('userId')}</p>
+          <p className="mt-2 text-sm font-thin">
+            {props.data.get('projectFounder')}
+          </p>
         </div>
         <div className="flex flex-col items-start justify-center space-y-4">
           <h3 className="text-sm">Description</h3>

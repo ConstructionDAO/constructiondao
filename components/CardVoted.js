@@ -11,8 +11,7 @@ import { useState } from 'react'
 
 function CardProjects(props) {
   function viewDocuments() {
-    // execute viewing
-    alert('successfully viewed')
+    window.open(props.data.get('projectPDF'))
   }
   return (
     <div className="mb-8 flex h-56 w-6/12 flex-col items-center justify-center border-b border-r border-white shadow-xl">
@@ -20,7 +19,7 @@ function CardProjects(props) {
         <div className="relative ml-6 flex w-6/12 flex-col items-center">
           <h1 className=" my-2">{props.data.get('projectTitle')}</h1>
           <Image
-            src="/constdao.jpeg"
+            src={props.data.get('projectPicture')}
             width={100}
             height={100}
             className="rounded-xl"

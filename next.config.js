@@ -1,17 +1,16 @@
-/** @type {import('next').NextConfig} */
-module.exports = {
-  reactStrictMode: true,
-}
+// /** @type {import('next').NextConfig} */
+// module.exports = {
+//   reactStrictMode: true,
+// }
+
+// module.exports = {
+//   images: {
+//     domains: ['ipfs.moralis.io', 'polygonscan.com'],
+//   },
+// }
 
 module.exports = {
-  theme: {
-    extend: {
-      images: {
-        domains: ['ipfs.moralis.io', 'polygonscan.com'],
-      },
-      backgroundImage: {
-        'hero-pattern': "url('/public/landing-page-bg.png",
-      },
-    },
+  images: {
+    domains: ['ipfs.moralis.io'],
   },
 }

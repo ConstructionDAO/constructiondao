@@ -13,7 +13,7 @@ function NativeBalance(props) {
         height={20}
         width={20}
         className="rounded-full pl-2 pr-2"
-        src="https://polygonscan.com/images/svg/brands/polygon.svg"
+        src="/polygon_logo.svg"
       />
       <div className="items-center justify-between space-x-2">
         {balance.formatted}

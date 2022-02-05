@@ -2,6 +2,7 @@ import { useMoralis } from 'react-moralis'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
 import Header from './Header'
+import Head from 'next/head'
 import { GlobeAltIcon } from '@heroicons/react/solid'
 
 function Login() {
@@ -10,15 +11,18 @@ function Login() {
 
   return (
     <div className="z-50 h-screen bg-gradient-to-b from-white  via-white to-blue-300">
+      <Head>
+        <title>Construction DAO - Login</title>
+        <link rel="icon" href="/cdao-fin.svg" />
+      </Head>
       <div className="absoluet top-0">
         <Header />
       </div>
-      <div className="flex flex-col">
+      <div className="z-50 flex flex-col">
         <Image
-          // layout="fill"
           height={700}
           width={1500}
-          src={'/landing-page-bg.png'}
+          src="/public/landing-page-bg.png"
           objectFit="cover"
           className="z-20"
         />{' '}

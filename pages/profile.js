@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import Profile from '../components/Profile'
 import TopFix from '../components/Topfix'
+import Login from '../components/Login'
 import { useMoralis } from 'react-moralis'
 import { useEffect } from 'react'
 
@@ -20,8 +21,8 @@ function profile() {
     // <div className="bg-gradient-to-l from-gray-100 via-teal-800 to-teal-800  h-screen overflow-hidden">
     <div className="h-screen overflow-hidden bg-gradient-to-b from-white  via-white to-blue-300 ">
       <Head>
-        <title>Construct Dao</title>
-        <link rel="icon" href="/construct.png" />
+        <title>Construction DAO - Profile</title>
+        <link rel="icon" href="/cdao-fin.svg" />
       </Head>
       <TopFix />
       <main className="flex h-screen overflow-y-scroll scrollbar-hide">
