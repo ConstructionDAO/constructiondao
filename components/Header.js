@@ -35,7 +35,6 @@ export default function Header() {
       />
       <div className="flex flex-row items-center justify-between space-x-2">
         <div className="flex flex-col items-center pr-8 text-sm font-bold italic  text-gray-700">
-          {/* <p>Available CDAO: {user.get('username')}</p> */}
           <button
             onClick={getDAOs}
             className="border-b border-black text-sm italic"
@@ -55,12 +54,6 @@ export default function Header() {
             : 'Connect Wallet'}
         </button>
       </div>
-      {/* <Image
-        width={100}
-        height={100}
-        src="/daoCone.png"
-        className="rotate-45"
-      /> */}
     </div>
   )
 }

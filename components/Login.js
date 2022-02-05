@@ -20,12 +20,12 @@ function Login() {
       </div>
       <div className="z-50 flex flex-col">
         <Image
+          src="/landingBG.png"
           height={700}
           width={1500}
-          src="/public/landing-page-bg.png"
           objectFit="cover"
           className="z-20"
-        />{' '}
+        />
         <div className=" flex flex-col items-center">
           <div
             className="mt-4 mb-2 justify-center rounded-xl border-b-2 border-black bg-blue-300 py-3 px-4 
