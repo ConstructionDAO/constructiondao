@@ -18,15 +18,19 @@ export default function Header() {
     router.push(`/`)
   }
   function getDAOs() {
-    router.push('/votes')
+    if (!isAuthenticated) {
+      alert('you have to login first')
+    } else {
+      router.push('/votes')
+    }
   }
 
   return (
     <div className="sticky top-0  flex h-24 items-center justify-between border-b-2 border-blue-300 bg-gradient-to-b from-gray-900/5 to-blue-300 px-5 shadow-lg">
       <Image
-        width={100}
-        height={100}
-        src="/cdao3.png"
+        width={150}
+        height={50}
+        src="/cdao7.png"
         className="flex items-center justify-center"
       />
       <div className="flex flex-row items-center justify-between space-x-2">

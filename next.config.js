@@ -4,7 +4,14 @@ module.exports = {
 }
 
 module.exports = {
-  images: {
-    domains: ['ipfs.moralis.io', 'polygonscan.com'],
+  theme: {
+    extend: {
+      images: {
+        domains: ['ipfs.moralis.io', 'polygonscan.com'],
+      },
+      backgroundImage: {
+        'hero-pattern': "url('/public/landing-page-bg.png",
+      },
+    },
   },
 }

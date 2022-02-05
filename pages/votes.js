@@ -3,6 +3,7 @@ import Votes from '../components/Votes'
 import TopFix from '../components/Topfix'
 import { useMoralis } from 'react-moralis'
 import { useEffect } from 'react'
+import Login from '../components/Login'
 
 function votes() {
   const { isWeb3Enabled, enableWeb3, isAuthenticated, isWeb3EnableLoading } =
@@ -13,7 +14,7 @@ function votes() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAuthenticated, isWeb3Enabled])
 
-  //   if (!isAuthenticated) return <Login />
+  if (!isAuthenticated) return <Login />
 
   return (
     <div className="h-screen overflow-hidden bg-gradient-to-b from-white  via-white to-blue-300 ">

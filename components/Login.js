@@ -16,15 +16,15 @@ function Login() {
       <div className="flex flex-col">
         <Image
           // layout="fill"
-          height={2000}
-          width={5000}
+          height={700}
+          width={1500}
           src={'/landing-page-bg.png'}
           objectFit="cover"
           className="z-20"
-        />
+        />{' '}
         <div className=" flex flex-col items-center">
           <div
-            className="my-12 justify-center rounded-xl border-b-2 border-black bg-blue-300 py-3 px-4 
+            className="mt-4 mb-2 justify-center rounded-xl border-b-2 border-black bg-blue-300 py-3 px-4 
           text-sm text-black 
           hover:shadow-xl active:border-b-2 active:border-blue-700 active:bg-blue-500 "
           >

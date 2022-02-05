@@ -14,6 +14,7 @@ function profile() {
   }, [isAuthenticated, isWeb3Enabled])
 
   //   if (!isAuthenticated) return <Login />
+  if (!isAuthenticated) return <Login />
 
   return (
     // <div className="bg-gradient-to-l from-gray-100 via-teal-800 to-teal-800  h-screen overflow-hidden">

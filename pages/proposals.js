@@ -15,6 +15,7 @@ function proposals() {
     if (isAuthenticated && !isWeb3Enabled && !isWeb3EnableLoading) enableWeb3()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAuthenticated, isWeb3Enabled])
+  if (!isAuthenticated) return <Login />
 
   return (
     <div className="h-screen overflow-hidden bg-gradient-to-b from-white  via-white to-blue-300 ">
