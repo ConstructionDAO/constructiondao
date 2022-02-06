@@ -2,6 +2,7 @@ import {
   ArrowSmUpIcon,
   DownloadIcon,
   ArrowSmDownIcon,
+  CheckCircleIcon,
 } from '@heroicons/react/outline'
 import { HeartIcon } from '@heroicons/react/solid'
 import Image from 'next/image'
@@ -110,24 +111,23 @@ function CardProjects(props) {
             className="rounded-xl"
           />
           <p className="mt-2 text-sm font-thin">{props.data.projectFounder}</p>
-          <div className="mt-4 flex flex-row text-sm">
+          <div className="mt-4 flex flex-row space-x-4 text-sm">
             <p className="flex flex-row">
               {props.data.voteUp} Votes{' '}
               <ArrowSmUpIcon className="h-3 w-3 text-green-500" />
             </p>
-
             <p className="flex flex-row">
               {props.data.voteDown} Votes{' '}
               <ArrowSmDownIcon className="h-3 w-3 text-red-500" />
             </p>
           </div>
         </div>
-        <div className="mt-8 flex w-9/12 flex-col space-y-4">
+        <div className="mt-8 flex w-9/12 flex-col space-y-2">
           <div className="flex flex-row items-center justify-between">
             <h3 className="text-sm">Description</h3>
-            <div className="flex flex-row pr-4 text-xs font-light">
+            <div className="flex flex-row pr-4 text-xs font-light italic">
               Created: &nbsp;
-              <p className="font-bold">
+              <p className="italic">
                 {format(new Date(props.data.createdAt), 'iii do MMM yyyy p')}
                 {/* {format(parseISO(props.data.createdAt), 'iii do MMM yyyy p')} */}
               </p>
@@ -137,16 +137,7 @@ function CardProjects(props) {
             {props.data.description}
           </p>
 
-          <div className="mr-4 flex flex-row items-center justify-around space-x-4 pt-4 text-sm">
-            <div className="rounded-xl border-b-2 border-black bg-blue-200 p-2 text-sm text-black active:border-blue-600 active:bg-blue-200">
-              <div
-                className="flex flex-row items-center space-x-2 text-xs hover:cursor-pointer"
-                onClick={viewDocuments}
-              >
-                <p>Documents</p>
-                <DownloadIcon className="h-3 w-3" />
-              </div>
-            </div>
+          <div className="mr-4 flex flex-row items-center justify-around space-x-4 border-b pt-4 text-sm">
             <div className="flex flex-row">
               Goal: &nbsp;
               <NumberFormat
@@ -155,7 +146,7 @@ function CardProjects(props) {
                 thousandSeparator={true}
                 prefix={'CDAOs '}
               />
-              <ArrowSmUpIcon className="h-3 w-3 text-green-500" />
+              {/* <ArrowSmUpIcon className="h-3 w-3 text-green-500" /> */}
             </div>
             <p className="flex flex-row">
               Duration: {props.data.numberOfDays / 86400} Days
@@ -166,30 +157,40 @@ function CardProjects(props) {
               {getStatus(props.data.status)}
             </p>
           </div>
+          <div className="flex flex-row items-center justify-center space-x-4 pb-4 pt-4">
+            <div className="rounded-xl border-b-2 border-black bg-blue-200 p-2 text-sm text-black active:border-blue-600 active:bg-blue-200">
+              <div
+                className="flex flex-row items-center space-x-2 text-xs hover:cursor-pointer"
+                onClick={viewDocuments}
+              >
+                <p>Documents</p>
+                <DownloadIcon className="h-3 w-3" />
+              </div>
+            </div>
+            {!isDisabled ? (
+              <div className="flex flex-row">
+                <div className="mx-4 rounded-xl border-b-2 border-black bg-blue-300 p-1 px-2 text-sm text-black active:border-blue-600 active:bg-blue-200">
+                  <button onClick={voteUp}>Vote Up</button>
+                </div>
+                <div className="mx-4 rounded-xl border-b-2 border-black bg-blue-300 p-1 px-2 text-sm text-black active:border-blue-600 active:bg-blue-200">
+                  <button onClick={voteDown}>Vote Down</button>
+                </div>
+              </div>
+            ) : (
+              <div className="flex flex-row">
+                <div className="mx-4 flex flex-row space-x-4 rounded-xl bg-gray-200 p-1 px-4 text-sm text-black ">
+                  <p>Voted</p>
+                  <CheckCircleIcon className="h-5 w-5" />
+                </div>
+              </div>
+            )}
+            {isOwner && props.data.status == 1 && (
+              <div className="mx-4 rounded-xl border-b-2 border-black bg-blue-300 p-1 px-2 text-sm text-black active:border-blue-600 active:bg-blue-200">
+                <button onClick={contractCancel}>Cancel</button>
+              </div>
+            )}
+          </div>
         </div>
-      </div>
-      <div className="mb-2 flex flex-row-reverse items-center justify-center pb-4">
-        {!isDisabled ? (
-          <div className="flex flex-row">
-            <div className="mx-4 rounded-xl border-b-2 border-black bg-blue-300 p-1 px-4 text-sm text-black active:border-blue-600 active:bg-blue-200">
-              <button onClick={voteUp}>Vote Up</button>
-            </div>
-            <div className="mx-4 rounded-xl border-b-2 border-black bg-blue-300 p-1 px-4 text-sm text-black active:border-blue-600 active:bg-blue-200">
-              <button onClick={voteDown}>Vote Down</button>
-            </div>
-          </div>
-        ) : (
-          <div className="flex flex-row">
-            <p className="mx-4 rounded-xl border-b-2 border-black bg-gray-300 p-1 px-4 text-sm text-black">
-              You voted
-            </p>
-          </div>
-        )}
-        {isOwner && props.data.status == 1 && (
-          <div className="mx-4 rounded-xl border-b-2 border-black bg-blue-300 p-1 px-4 text-sm text-black active:border-blue-600 active:bg-blue-200">
-            <button onClick={contractCancel}>Cancel</button>
-          </div>
-        )}
       </div>
     </div>
   )
