@@ -60,7 +60,9 @@ function CardProfile() {
     <div className="flex w-full flex-col justify-evenly">
       <div className="flex w-full flex-row justify-evenly ">
         <div className="flex w-4/12 flex-col items-center justify-center border-r border-b border-white shadow-xl">
-          <h1 className="my-4">{username}</h1>
+          <div className="mx-2 mt-2 mb-4 w-11/12 items-center border-b border-blue-600 py-2 text-center text-lg font-bold text-gray-800 ">
+            <h1>{username}</h1>
+          </div>
           <Image
             // src={userAvatar}
             src="/cdao-fin.svg"
@@ -130,7 +132,9 @@ function CardProfile() {
           )}
         </div>
         <div className="flex w-4/12 flex-col items-center border-r border-b border-white shadow-xl">
-          <h1 className="my-4 ">Wallet Balance</h1>
+          <div className="mx-2 mt-2 mb-4 w-11/12 items-center border-b border-blue-600 py-2 text-center text-lg font-bold text-gray-800 ">
+            Wallet Balance
+          </div>
           <NativeBalance />
           <ERC20Balances />
         </div>

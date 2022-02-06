@@ -27,24 +27,24 @@ function Modal() {
     // const data = document.getElementById('avatar').files[0]
     // const avatar = new Moralis.File(data.name, data)
     // await avatar.saveIPFS()
-    const avatarPicture = document.getElementById('avatarPicture').files[0]
+    // const avatarPicture = document.getElementById('avatarPicture').files[0]
 
-    let ipfsPicture = ''
-    if (avatarPicture) {
-      console.log('uploading cover')
-      await saveFile('avatarPicture', avatarPicture, { saveIPFS: true }).then(
-        async (hash) => {
-          console.log(hash)
-          ipfsPicture = hash._ipfs
-        }
-      )
-    }
+    // let ipfsPicture = ''
+    // if (avatarPicture) {
+    //   console.log('uploading cover')
+    //   await saveFile('avatarPicture', avatarPicture, { saveIPFS: true }).then(
+    //     async (hash) => {
+    //       ipfsPicture = hash._ipfs
+    //       console.log(hash._ipfs)
+    //     }
+    //   )
+    // }
 
     await setUserData({
       username,
       email,
       url: socials,
-      image: ipfsPicture,
+      // image: ipfsPicture,
     })
   }
 
@@ -83,7 +83,7 @@ function Modal() {
           className="bg-transparent outline-none"
         />
       </div>
-      <h1>Profile Picture</h1>
+      {/* <h1>Profile Picture</h1>
       <div className="z-50 flex w-9/12 flex-row items-center justify-between rounded-full border-2 border-blue-300/50 py-1 pl-4  opacity-95 shadow-xl hover:border-blue-800">
         <input
           id="avatarPicture"
@@ -92,7 +92,7 @@ function Modal() {
           placeholder=""
           className="bg-transparent text-xs outline-none"
         />
-      </div>
+      </div> */}
       <div className="relative flex w-24  flex-col lg:mx-auto">
         <button
           type="submit"

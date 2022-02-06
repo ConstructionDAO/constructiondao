@@ -23,6 +23,10 @@ export default function Navbar() {
     router.push('proposals')
   }
 
+  function seeTreasury() {
+    router.push('treasury')
+  }
+
   return (
     <div className="lg:space-x-18 flex h-16 items-center justify-center space-x-16">
       <div className="flex flex-row space-x-12 rounded-xl bg-transparent bg-gray-200 p-2 text-gray-700 lg:space-x-24">
@@ -33,6 +37,7 @@ export default function Navbar() {
         <button onClick={seeVotes}>Votes</button>
 
         <button onClick={seeProposals}>Proposal</button>
+        <button onClick={seeTreasury}>Treasury</button>
       </div>
     </div>
   )

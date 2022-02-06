@@ -9,7 +9,7 @@ import {
 import Image from 'next/image'
 import { useState } from 'react'
 
-function CardProjects(props) {
+function CardVoted(props) {
   function viewDocuments() {
     window.open(props.data.get('projectPDF'))
   }
@@ -17,19 +17,19 @@ function CardProjects(props) {
     <div className="mb-8 flex h-56 w-6/12 flex-col items-center justify-center border-b border-r border-white shadow-xl">
       <div className="flex flex-row justify-between space-x-8">
         <div className="relative ml-6 flex w-6/12 flex-col items-center">
-          <h1 className=" my-2">{props.data.get('projectTitle')}</h1>
+          <h1 className=" my-2">{props.data.projectTitle}</h1>
           <Image
-            src={props.data.get('projectPicture') || '/cdao-fin.svg'}
+            src={props.data.projectPicture || '/cdao-fin.svg'}
             width={100}
             height={100}
             className="rounded-xl"
           />
-          <p className="mt-2 text-sm font-thin">{props.data.get('userId')}</p>
+          <p className="mt-2 text-sm font-thin">{props.data.projectFounder}</p>
         </div>
         <div className="flex flex-col items-start justify-center space-y-4">
           <h3 className="text-sm">Description</h3>
           <p className="mr-4 flex flex-wrap text-sm font-light">
-            {props.data.get('description')}
+            {props.data.description}
           </p>
           <div className="flex flex-row items-center justify-around space-x-16 text-sm">
             <div className="rounded-xl border-b-2 border-black bg-blue-200 p-2 text-sm text-black hover:cursor-pointer active:border-blue-600 active:bg-blue-200">
@@ -42,7 +42,7 @@ function CardProjects(props) {
               </div>
             </div>
             <p className="flex flex-row">
-              Goal: {props.data.get('fundingGoal')} Votes{' '}
+              Goal: {props.data.fundingGoal} Votes{' '}
               <ArrowSmUpIcon className="h-3 w-3 text-green-500" />
             </p>
           </div>
@@ -56,11 +56,11 @@ function CardProjects(props) {
           </div>
           <div className="flex-end flex flex-row space-x-8 pr-32 text-sm">
             <p className="flex flex-row">
-              {props.data.get('voteUp')} Votes{' '}
+              {props.data.voteUp} Votes{' '}
               <ArrowSmUpIcon className="h-3 w-3 text-green-500" />
             </p>
             <p className="flex flex-row">
-              {props.data.get('voteDown')} Votes{' '}
+              {props.data.voteDown} Votes{' '}
               <ArrowSmDownIcon className="h-3 w-3 text-red-500" />
             </p>
           </div>
@@ -70,4 +70,4 @@ function CardProjects(props) {
   )
 }
 
-export default CardProjects
+export default CardVoted

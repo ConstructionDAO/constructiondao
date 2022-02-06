@@ -17,24 +17,23 @@ function ProposalPage() {
 
   useEffect(() => {
     if (isAuthenticated && !isWeb3Enabled && !isWeb3EnableLoading) enableWeb3()
-    const Proposal = Moralis.Object.extend('Proposal')
-    const query = new Moralis.Query(Proposal)
-    query.equalTo('walletAddress', user.get('ethAddress'))
-    query.equalTo('active', true)
-    query.find().then((results) => {
-      if (user) {
-        setProposal(results)
-      }
+    // const Proposal = Moralis.Object.extend('Proposal')
+    // const query = new Moralis.Query(Proposal)
+    // query.equalTo('walletAddress', user.get('ethAddress'))
+    // query.equalTo('active', true)
+    // query.find().then((results) => {
+    //   if (user) {
+    //     setProposal(results)
+    //   }
+    // })
+
+    // query.notEqualTo('owner', 'notactive')
+
+    Moralis.Cloud.run('getMyProposals', {
+      voter: user.get('ethAddress'),
+    }).then((results) => {
+      setProposal(results)
     })
-
-    query.notEqualTo('owner', 'notactive')
-
-    //   Moralis.Cloud.run("getDownloadTokens", {
-    //     token_id: "0x7595656ba326543413e5288e6aAef08b60699A17",
-    //   }).then((results) => {
-    //     setAlbums(results);
-    //     console.log(results);
-    //   });
   }, [isAuthenticated, isWeb3Enabled, user])
   const [isNew, setIsNew] = useState(true)
   const [isCreated, setIsCreated] = useState(false)
@@ -49,21 +48,7 @@ function ProposalPage() {
     setIsNew(true)
     setIsCreated(false)
   }
-  // function openMintVote() {
-  //   setMinting(true)
-  //   setVoted(false)
-  //   setVoteBalance(false)
-  // }
-  // function openVoted() {
-  //   setMinting(false)
-  //   setVoted(true)
-  //   setVoteBalance(false)
-  // }
-  // function viewVoteBalance() {
-  //   setMinting(false)
-  //   setVoted(false)
-  //   setVoteBalance(true)
-  // }
+
   return (
     <div className="flex h-screen w-full flex-col items-center">
       <div className="flex flex-row space-x-48">
@@ -108,14 +93,6 @@ function ProposalPage() {
           <MintProposal />
         </div>
       )}
-      {/* {minting && <MintVote />}
-      {voteBalance && (
-        <div className="flex w-4/12 flex-col items-center rounded-xl border-r border-b-2 border-white shadow-xl">
-          <h1 className="my-4 ">Vote Balance</h1>
-          <NativeBalance />
-          <ERC20Balances />
-        </div>
-      )} */}
     </div>
   )
 }

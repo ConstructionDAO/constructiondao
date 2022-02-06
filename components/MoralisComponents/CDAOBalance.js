@@ -31,15 +31,16 @@ function CDAOBalance(props) {
       query.equalTo('token_id', '1')
       query.equalTo('token_address', CDAOAddress.toLowerCase())
       query.first().then((results) => {
-        setFindCDAO(results.get('amount'))
         console.log(results)
+        setFindCDAO(results.get('amount'))
       })
     }
   }, [user])
 
   return (
-    <div className="z-50 flex w-56 max-w-2xl flex-row items-center justify-center space-x-2 rounded-xl border-2 border-blue-300/50 bg-transparent opacity-95 shadow-xl hover:border-blue-800">
-      <div className="items-center justify-between space-x-2">{findCDAO}</div>
+    <div className="z-50 flex w-56 max-w-2xl flex-row items-center justify-center space-x-2 bg-transparent opacity-95">
+      <p>CDAO Balance:</p>
+      <div className="items-center justify-between">{findCDAO}</div>
     </div>
   )
 }

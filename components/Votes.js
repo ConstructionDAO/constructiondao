@@ -17,12 +17,18 @@ function Votes() {
 
   useEffect(() => {
     if (isAuthenticated && !isWeb3Enabled && !isWeb3EnableLoading) enableWeb3()
-    const Proposal = Moralis.Object.extend('Proposal')
-    const query = new Moralis.Query(Proposal)
-    query.find().then((results) => {
-      if (user) {
-        setProposal(results)
-      }
+    // const Proposal = Moralis.Object.extend('Proposal')
+    // const query = new Moralis.Query(Proposal)
+    // query.find().then((results) => {
+    //   if (user) {
+    //     setProposal(results)
+    //   }
+    // })
+
+    Moralis.Cloud.run('getMyVotes', {
+      voter: user.get('ethAddress'),
+    }).then((results) => {
+      setProposal(results)
     })
 
     // query.notEqualTo('owner', 'notactive')
@@ -38,7 +44,6 @@ function Votes() {
   }, [isAuthenticated, isWeb3Enabled, user])
   const [isVotes, setIsVotes] = useState(false)
   const [mintVotes, setMintVotes] = useState(true)
-  const [voteBalance, setVoteBalance] = useState(false)
 
   function modalMintVote() {
     setIsVotes(false)

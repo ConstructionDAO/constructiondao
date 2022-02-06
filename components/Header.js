@@ -34,16 +34,15 @@ export default function Header() {
         src="/cdao-logo-1.svg"
         className="flex items-center justify-center"
       />
-      <div className="flex flex-row items-center justify-between space-x-2">
-        <div className="flex flex-col items-center pr-8 text-sm font-bold italic  text-gray-700">
+      <div className="flex flex-row items-center justify-between ">
+        <div className="flex flex-row items-center justify-center  pr-8 text-sm font-bold italic  text-gray-700">
+          <CDAOBalance />
           <button
             onClick={getDAOs}
-            className="border-b border-black text-sm italic"
+            className="border-b border-black text-sm italic shadow-xl"
           >
             Get CDAO
           </button>
-          <p>CDAO Balance</p>
-          <CDAOBalance />
         </div>
         <button
           className="flex flex-row items-center rounded-xl border-b-2 border-black
