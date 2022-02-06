@@ -1,10 +1,8 @@
-import { useMoralis, useNFTBalances } from 'react-moralis'
-import Image from 'next/image'
+import { useMoralis } from 'react-moralis'
 import { useEffect, useState } from 'react'
 import { CDAOAddress } from '../../contracts/CDAOContract'
 
 function CDAOBalance(props) {
-  //   const { data: NFTBalances } = useNFTBalances(props)
   const {
     account,
     isAuthenticated,
@@ -16,8 +14,6 @@ function CDAOBalance(props) {
   } = useMoralis()
 
   if (!account || !isAuthenticated) return null
-
-  //   console.log(NFTBalances)
 
   const [findCDAO, setFindCDAO] = useState()
 
@@ -32,7 +28,9 @@ function CDAOBalance(props) {
       query.equalTo('token_address', CDAOAddress.toLowerCase())
       query.first().then((results) => {
         console.log(results)
-        setFindCDAO(results.get('amount'))
+        if (results != null) {
+          setFindCDAO(results.get('amount'))
+        }
       })
     }
   }, [user])

@@ -3,8 +3,9 @@ import type { AppProps } from 'next/app'
 import { MoralisProvider } from 'react-moralis'
 import { MoralisDappProvider } from '../providers/MoralisDappProvider/MoralisDappProvider'
 
-const APP_ID = 'pDrFKmhfObCt8pAEz0iEk9SPBBHria9xm6VeFsKG'
-const SERVER_URL = 'https://cuwylrgeukla.usemoralis.com:2053/server'
+const APP_ID = process.env.REACT_APP_ID
+const SERVER_URL = process.env.REACT_SERVER_URL
+// const SERVER_URL = 'https://cuwylrgeukla.usemoralis.com:2053/server'
 
 function MyApp({ Component, pageProps }: AppProps) {
   const isServerInfo = APP_ID && SERVER_URL ? true : false
@@ -15,7 +16,11 @@ function MyApp({ Component, pageProps }: AppProps) {
     )
   if (isServerInfo)
     return (
-      <MoralisProvider appId={APP_ID} serverUrl={SERVER_URL}>
+      <MoralisProvider
+        appId={APP_ID}
+        serverUrl={SERVER_URL}
+        initializeOnMount={false}
+      >
         <MoralisDappProvider>
           {/* <App isServerInfo /> */}
           <Component isServerInfo {...pageProps} />

@@ -80,6 +80,10 @@ function MintVote() {
     })
   }
 
+  function getDAI() {
+    window.open('https://matictestnet.stablemalt.finance/faucet')
+  }
+
   return (
     <div className="flex w-full flex-col items-center text-black">
       <div className="flex w-6/12 flex-col items-center justify-center border-r border-b shadow-xl">
@@ -101,10 +105,16 @@ function MintVote() {
                   name="numberOfTokens"
                   id="numberOfTokens"
                   type="number"
-                  placeholder="Number Of Votes"
+                  placeholder="Number Of CDAOs"
                   className="outline:none bg-transparent text-center focus:outline-none"
                 />
               </div>
+              <p
+                className="text-xs text-gray-800 hover:cursor-pointer"
+                onClick={getDAI}
+              >
+                Need Testnet DAI? Click here.
+              </p>
             </div>
           </div>
           <div className="flex w-11/12 flex-col border-b border-blue-600 py-1"></div>

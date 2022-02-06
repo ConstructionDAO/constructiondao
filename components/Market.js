@@ -1,7 +1,5 @@
 import { useMoralis } from 'react-moralis'
 import { useState, useEffect } from 'react'
-import Bottom from '../components/Bottom'
-
 import CardProjects from './CardProjects'
 
 export default function Market() {
@@ -34,7 +32,6 @@ export default function Market() {
         {proposal.map((data, index) => (
           <CardProjects data={data} key={index} />
         ))}
-        {/* <Bottom /> */}
       </div>
     </div>
   )

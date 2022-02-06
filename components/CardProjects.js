@@ -169,10 +169,10 @@ function CardProjects(props) {
             </div>
             {!isDisabled ? (
               <div className="flex flex-row">
-                <div className="mx-4 rounded-xl border-b-2 border-black bg-blue-300 p-1 px-2 text-sm text-black active:border-blue-600 active:bg-blue-200">
+                <div className="mx-4 rounded-xl border-b-2 border-black bg-blue-200 p-1 px-2 text-sm text-black active:border-blue-600 active:bg-blue-200">
                   <button onClick={voteUp}>Vote Up</button>
                 </div>
-                <div className="mx-4 rounded-xl border-b-2 border-black bg-blue-300 p-1 px-2 text-sm text-black active:border-blue-600 active:bg-blue-200">
+                <div className="mx-4 rounded-xl border-b-2 border-black bg-blue-200 p-1 px-2 text-sm text-black active:border-blue-600 active:bg-blue-200">
                   <button onClick={voteDown}>Vote Down</button>
                 </div>
               </div>
@@ -185,7 +185,7 @@ function CardProjects(props) {
               </div>
             )}
             {isOwner && props.data.status == 1 && (
-              <div className="mx-4 rounded-xl border-b-2 border-black bg-blue-300 p-1 px-2 text-sm text-black active:border-blue-600 active:bg-blue-200">
+              <div className="mx-4 rounded-xl border-b-2 border-black bg-blue-200 p-1 px-2 text-sm text-black active:border-blue-600 active:bg-blue-200">
                 <button onClick={contractCancel}>Cancel</button>
               </div>
             )}

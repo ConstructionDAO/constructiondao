@@ -31,7 +31,8 @@ function treasury() {
         setProjectsFunded(results)
       })
       Moralis.Cloud.run('fundedTotal', {}).then((results) => {
-        if (results.length != 0) setFundedTotal(results)
+        console.log(results[0].total)
+        if (results.length != 0) setFundedTotal(results[0].total)
       })
     }
   }, [isAuthenticated, isWeb3Enabled])

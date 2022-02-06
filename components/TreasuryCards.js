@@ -47,6 +47,7 @@ function TreasuryCards(props) {
               value={props.fundedTotal}
               displayType={'text'}
               thousandSeparator={true}
+              prefix={'$ '}
             />{' '}
           </div>
         </div>
