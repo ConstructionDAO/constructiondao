@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import Profile from '../components/Profile'
-import TopFix from '../components/Topfix'
+import Header from '../components/Header'
+import Navbar from '../components/Navbar'
 import Login from '../components/Login'
 import { useMoralis } from 'react-moralis'
 import { useEffect } from 'react'
@@ -24,7 +25,10 @@ function profile() {
         <title>Construction DAO - Profile</title>
         <link rel="icon" href="/cdao-fin.svg" />
       </Head>
-      <TopFix />
+      <div className="sticky">
+        <Header />
+        <Navbar />
+      </div>
       <main className="flex h-screen ">
         <Profile />
       </main>

@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import Login from '../components/Login'
-import TopFix from '../components/Topfix'
+import Header from '../components/Header'
+import Navbar from '../components/Navbar'
 import { useMoralis } from 'react-moralis'
 import { useEffect, useState } from 'react'
 import ProposalPage from '../components/ProposalPage'
@@ -21,7 +22,10 @@ function proposals() {
         <title>Construction DAO - New Prop</title>
         <link rel="icon" href="/cdao-fin.svg" />
       </Head>
-      <TopFix />
+      <div className="sticky">
+        <Header />
+        <Navbar />
+      </div>
       <main className="flex h-screen ">
         <ProposalPage />
       </main>

@@ -1,7 +1,8 @@
 import Head from 'next/head'
 import Login from '../components/Login'
 import { useMoralis } from 'react-moralis'
-import TopFix from '../components/TopFix'
+import Header from '../components/Header'
+import Navbar from '../components/Navbar'
 import Market from '../components/Market'
 
 import { useEffect } from 'react'
@@ -23,7 +24,10 @@ export default function Home() {
         <title>Construction DAO - Home</title>
         <link rel="icon" href="/cdao-fin.svg" />
       </Head>
-      <TopFix />
+      <div className="sticky">
+        <Header />
+        <Navbar />
+      </div>
       <main className="flex h-screen">
         <Market />
       </main>
