@@ -4,16 +4,15 @@ import {
   ArrowSmDownIcon,
   CheckCircleIcon,
 } from '@heroicons/react/outline'
-import { HeartIcon } from '@heroicons/react/solid'
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import { useMoralis } from 'react-moralis'
 import NumberFormat from 'react-number-format'
-import { format, parseISO } from 'date-fns'
+import { format } from 'date-fns'
 import {
   ConstructionABI,
   ConstructionAddress,
-} from '../contracts/proposalContract'
+} from '../contracts/ProposalContract'
 
 function CardProjects(props) {
   const { isAuthenticated, user, isWeb3Enabled, Moralis } = useMoralis()

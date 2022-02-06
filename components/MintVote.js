@@ -1,10 +1,5 @@
-import { useState } from 'react'
 import { useMoralisFile, useMoralis } from 'react-moralis'
 import { CDAOABI, CDAOAddress } from '../contracts/CDAOContract'
-import {
-  ConstructionABI,
-  ConstructionAddress,
-} from '../contracts/proposalContract'
 import { DAIABI, DAIAddress } from '../contracts/DAIContract'
 
 function MintVote() {

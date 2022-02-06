@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import Votes from '../components/Votes'
 import TopFix from '../components/Topfix'
 import { useMoralis } from 'react-moralis'
 import { useEffect, useState } from 'react'

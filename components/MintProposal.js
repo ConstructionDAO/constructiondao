@@ -4,12 +4,10 @@ import UploadConfirmed from './Mints/UploadConfirmed'
 import PictureDone from './Mints/PictureDone'
 import UploadStarted from './Mints/UploadStarted'
 import PDFDone from './Mints/PDFDone'
-import { CDAOABI, CDAOAddress } from '../contracts/CDAOContract'
 import {
   ConstructionABI,
   ConstructionAddress,
-} from '../contracts/proposalContract'
-import { DAIABI, DAIAddress } from '../contracts/DAIContract'
+} from '../contracts/ProposalContract'
 
 function MintProposal() {
   const { saveFile } = useMoralisFile()
