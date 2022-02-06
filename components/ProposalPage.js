@@ -19,15 +19,15 @@ function ProposalPage() {
     if (isAuthenticated && !isWeb3Enabled && !isWeb3EnableLoading) enableWeb3()
     const Proposal = Moralis.Object.extend('Proposal')
     const query = new Moralis.Query(Proposal)
+    query.equalTo('walletAddress', user.get('ethAddress'))
+    query.equalTo('active', true)
     query.find().then((results) => {
       if (user) {
         setProposal(results)
       }
     })
 
-    // query.notEqualTo('owner', 'notactive')
-
-    // query.equalTo("owner", user.get("ethAddress"));
+    query.notEqualTo('owner', 'notactive')
 
     //   Moralis.Cloud.run("getDownloadTokens", {
     //     token_id: "0x7595656ba326543413e5288e6aAef08b60699A17",

@@ -7,30 +7,77 @@ import { HeartIcon } from '@heroicons/react/solid'
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import { useMoralis } from 'react-moralis'
+import NumberFormat from 'react-number-format'
+import { format } from 'date-fns'
+import {
+  ConstructionABI,
+  ConstructionAddress,
+} from '../contracts/proposalContract'
 
 function CardProjects(props) {
-  // const { isAuthenticated, user, isWeb3Enabled, Moralis } = useMoralis()
-  const [isLiked, setIsLiked] = useState(false)
+  const { isAuthenticated, user, isWeb3Enabled, Moralis } = useMoralis()
+  const [isOwner, setIsOwner] = useState(false)
 
-  async function contractCall() {
-    //exectute contract Call
-    alert('executed')
+  useEffect(() => {
+    if (props.data.get('walletAddress') == user.get('ethAddress')) {
+      setIsOwner(true)
+    }
+  }, [user])
+
+  async function contractCall(vote) {
+    const web3Provider = await Moralis.enableWeb3()
+    const ethers = Moralis.web3Library
+
+    const contractProposal = new ethers.Contract(
+      ConstructionAddress,
+      ConstructionABI,
+      web3Provider.getSigner()
+    )
+    contractProposal.voteOnProposal(props.data.id, vote).then((result) => {
+      alert('voted successfully')
+      console.log(result)
+    })
   }
 
-  function voteProject() {
-    // execute voting function
-    contractCall()
+  function getStatus(status) {
+    if (status == 1) {
+      return 'active'
+    } else if (status == 2) {
+      return 'cancelled'
+    } else if (status == 3) {
+      return 'accepted'
+    } else if (status == 4) {
+      return 'rejected'
+    } else if (status == 5) {
+      return 'funded'
+    } else if (status == 6) {
+      return 'completed'
+    }
+  }
+
+  function voteUp() {
+    contractCall(true)
+  }
+  function voteDown() {
+    contractCall(false)
   }
 
   function viewDocuments() {
     window.open(props.data.get('projectPDF'))
   }
 
-  function like() {
-    setIsLiked(true)
-  }
-  function dislike() {
-    setIsLiked(false)
+  async function contractCancel() {
+    const web3Provider = await Moralis.enableWeb3()
+    const ethers = Moralis.web3Library
+
+    const contractCancelled = new ethers.Contract(
+      ConstructionAddress,
+      ConstructionABI,
+      web3Provider.getSigner()
+    )
+    contractCancelled.cancelProposal(props.data.id).then((result) => {
+      alert('successfully cancelled')
+    })
   }
 
   return (
@@ -39,7 +86,7 @@ function CardProjects(props) {
         <div className="relative ml-6 flex w-6/12 flex-col items-center">
           <h1 className=" my-2">{props.data.get('projectTitle')}</h1>
           <Image
-            src={props.data.get('projectPicture')}
+            src={props.data.get('projectPicture') || '/cdao-fin.svg'}
             width={100}
             height={100}
             className="rounded-xl"
@@ -63,9 +110,25 @@ function CardProjects(props) {
                 <DownloadIcon className="h-3 w-3" />
               </div>
             </div>
-            <p className="flex flex-row">
-              Goal: {props.data.get('fundingGoal')} Votes{' '}
+            <div className="flex flex-row">
+              <NumberFormat
+                value={props.data.get('fundingGoal')}
+                displayType={'text'}
+                thousandSeparator={true}
+                prefix={'CDAOs '}
+              />
               <ArrowSmUpIcon className="h-3 w-3 text-green-500" />
+            </div>
+            <p className="flex flex-row">
+              Duration: {props.data.get('numberOfDays') / 86400} Days
+            </p>
+            <p className="flex flex-row">
+              Created:
+              {format(props.data.get('createdAt'), 'iii do MMM yyyy p')}
+            </p>
+            <p className="flex flex-row">
+              Status:
+              {getStatus(props.data.get('status'))}
             </p>
           </div>
         </div>
@@ -73,17 +136,11 @@ function CardProjects(props) {
       <div className="flex w-11/12 flex-row-reverse items-center justify-items-center space-x-4">
         <div className="flex flex-row-reverse items-center justify-center">
           <div className="mx-4 rounded-xl border-b-2 border-black bg-blue-300 p-1 px-4 text-sm text-black active:border-blue-600 active:bg-blue-200">
-            <button onClick={voteProject}>Vote</button>
+            <button onClick={voteUp}>Vote Up</button>
           </div>
-          {!isLiked ? (
-            <div onClick={like}>
-              <HeartIcon className="h-5 w-5 text-gray-600 hover:cursor-pointer" />
-            </div>
-          ) : (
-            <div onClick={dislike}>
-              <HeartIcon className="h-5 w-5 text-red-600 hover:cursor-pointer" />
-            </div>
-          )}
+          <div className="mx-4 rounded-xl border-b-2 border-black bg-blue-300 p-1 px-4 text-sm text-black active:border-blue-600 active:bg-blue-200">
+            <button onClick={voteDown}>Vote Down</button>
+          </div>
         </div>
         <div className="flex-end flex flex-row space-x-8 pr-32 text-sm">
           <p className="flex flex-row">
@@ -94,6 +151,11 @@ function CardProjects(props) {
             {props.data.get('voteDown')} Votes{' '}
             <ArrowSmDownIcon className="h-3 w-3 text-red-500" />
           </p>
+          {isOwner && (
+            <button onClick={contractCancel} className="flex flex-row">
+              Cancel
+            </button>
+          )}
         </div>
       </div>
     </div>

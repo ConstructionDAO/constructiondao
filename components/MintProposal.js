@@ -1,14 +1,15 @@
 import { useState } from 'react'
 import { useMoralisFile, useMoralis } from 'react-moralis'
-// import { TokenABI, TokenAddress } from '../../contracts/TokenContract'
-// import {
-//   MarketplaceABI,
-//   marketplaceAddress,
-// } from '../../contracts/MarketplaceContract'
 import UploadConfirmed from './Mints/UploadConfirmed'
 import PictureDone from './Mints/PictureDone'
 import UploadStarted from './Mints/UploadStarted'
 import PDFDone from './Mints/PDFDone'
+import { CDAOABI, CDAOAddress } from '../contracts/CDAOContract'
+import {
+  ConstructionABI,
+  ConstructionAddress,
+} from '../contracts/proposalContract'
+import { DAIABI, DAIAddress } from '../contracts/DAIContract'
 
 function MintProposal() {
   const { saveFile } = useMoralisFile()
@@ -19,37 +20,26 @@ function MintProposal() {
   const [pdfDone, setPDFDone] = useState(false)
   const [uploadDone, setUploadDone] = useState(false)
 
-  // async function contractCall(object) {
-  //   const web3Provider = await Moralis.enableWeb3()
-  //   const ethers = Moralis.web3Library
+  async function contractCall(object) {
+    const web3Provider = await Moralis.enableWeb3()
+    const ethers = Moralis.web3Library
 
-  //   const contract = new ethers.Contract(
-  //     TokenAddress,
-  //     TokenABI,
-  //     web3Provider.getSigner()
-  //   )
-
-  //   const price = ethers.utils.parseEther(object.get('recordPrice').toString())
-
-  //   contract
-  //     .createAlbum(
-  //       object.id,
-  //       object.get('recordCount'),
-  //       '4',
-  //       price,
-  //       object.get('royaltyPrice')
-  //     )
-  //     .then((result) => {
-  //       contract.setApprovalForAll(marketplaceAddress, true)
-  //       alert(
-  //         'successful, please confirm direct approval for marketplace via metamask'
-  //       )
-  //       setUploadDone(true)
-  //       alert(
-  //         "You find the item in your collection. From there you'll be able to list it on the marketplace"
-  //       )
-  //     })
-  // }
+    const contractProposal = new ethers.Contract(
+      ConstructionAddress,
+      ConstructionABI,
+      web3Provider.getSigner()
+    )
+    contractProposal
+      .createProposal(
+        object.id,
+        object.get('projectPDF'),
+        object.get('numberOfDays'),
+        object.get('fundingGoal')
+      )
+      .then((result) => {
+        alert('proposal created')
+      })
+  }
 
   async function createProposal() {
     setIsUploading(true)
@@ -61,6 +51,7 @@ function MintProposal() {
     const projectPDF = document.getElementById('projectPDF').files[0]
     const projectFounder = document.getElementById('projectFounder').value
     const walletAddress = user.get('ethAddress')
+    const numberOfDays = document.getElementById('numberOfDays').value * 86400
 
     let ipfsCover = ''
     let ipfsFiles = ''
@@ -96,6 +87,7 @@ function MintProposal() {
       files: ipfsFiles,
       founder: projectFounder,
       ethAddress: walletAddress,
+      duration: numberOfDays,
     }
     const metadataFile = new Moralis.File('metadata.json', {
       base64: btoa(JSON.stringify(metadata)),
@@ -114,9 +106,10 @@ function MintProposal() {
     proposal.set('projectPDF', ipfsFiles)
     proposal.set('projectFounder', projectFounder)
     proposal.set('walletAddress', walletAddress)
+    proposal.set('numberOfDays', numberOfDays)
     proposal.save().then((object) => {
-      // contractCall(object)
-      console.log(object)
+      contractCall(object)
+      // console.log(object)
       setUploadDone(true)
     })
   }
@@ -163,6 +156,15 @@ function MintProposal() {
                   id="fundingGoal"
                   type="text"
                   placeholder="Total Vote Goal"
+                  className="outline:none bg-transparent text-center focus:outline-none"
+                />
+              </div>
+              <div className="z-50 flex w-9/12 max-w-2xl flex-col rounded-xl border-2 border-blue-300/50 bg-transparent px-4 py-1 opacity-95 shadow-xl hover:border-blue-800 ">
+                <input
+                  name="numberOfDays"
+                  id="numberOfDays"
+                  type="number"
+                  placeholder="Duration in Days"
                   className="outline:none bg-transparent text-center focus:outline-none"
                 />
               </div>

@@ -19,13 +19,13 @@ function profile() {
 
   return (
     // <div className="bg-gradient-to-l from-gray-100 via-teal-800 to-teal-800  h-screen overflow-hidden">
-    <div className="h-screen overflow-hidden bg-gradient-to-b from-white  via-white to-blue-300 ">
+    <div className="h-screen overflow-y-scroll bg-gradient-to-b from-white via-white  to-blue-300 scrollbar-hide ">
       <Head>
         <title>Construction DAO - Profile</title>
         <link rel="icon" href="/cdao-fin.svg" />
       </Head>
       <TopFix />
-      <main className="flex h-screen overflow-y-scroll scrollbar-hide">
+      <main className="flex h-screen ">
         <Profile />
       </main>
     </div>

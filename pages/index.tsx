@@ -18,7 +18,7 @@ export default function Home() {
   if (!isAuthenticated) return <Login />
 
   return (
-    <div className="h-screen overflow-hidden bg-gradient-to-b from-white  via-white to-blue-300 ">
+    <div className="h-screen overflow-y-scroll bg-gradient-to-b from-white via-white  to-blue-300 scrollbar-hide ">
       <Head>
         <title>Construction DAO - Home</title>
         <link rel="icon" href="/cdao-fin.svg" />

@@ -4,6 +4,7 @@ import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 // import Chains from "../Chains/Chains";
 import Image from 'next/image'
+import CDAOBalance from './MoralisComponents/CDAOBalance'
 
 export default function Header() {
   const router = useRouter()
@@ -26,7 +27,7 @@ export default function Header() {
   }
 
   return (
-    <div className="sticky top-0  flex h-24 items-center justify-between border-b-2 border-blue-300 bg-gradient-to-b from-gray-900/5 to-blue-300 px-5 shadow-lg">
+    <div className="sticky top-0 flex h-24 w-full items-center justify-between overflow-hidden border-b-2 border-blue-300 bg-gradient-to-b from-gray-900/5 to-blue-300 px-5 shadow-lg">
       <Image
         width={150}
         height={50}
@@ -41,6 +42,8 @@ export default function Header() {
           >
             Get CDAO
           </button>
+          <p>CDAO Balance</p>
+          <CDAOBalance />
         </div>
         <button
           className="flex flex-row items-center rounded-xl border-b-2 border-black
@@ -49,9 +52,7 @@ export default function Header() {
           hover:shadow-xl active:border-b-2 active:border-blue-300 active:bg-blue-700 active:text-white"
           onClick={!isAuthenticated ? authenticate : userLogout}
         >
-          {isAuthenticated
-            ? 'Disconnect ' + `${user.get('username')}`
-            : 'Connect Wallet'}
+          {isAuthenticated ? 'Disconnect' : 'Connect Wallet'}
         </button>
       </div>
     </div>

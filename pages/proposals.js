@@ -3,8 +3,6 @@ import Login from '../components/Login'
 import TopFix from '../components/Topfix'
 import { useMoralis } from 'react-moralis'
 import { useEffect, useState } from 'react'
-import MintVote from '../components/MintVote'
-import CardVoted from '../components/CardVoted'
 import ProposalPage from '../components/ProposalPage'
 
 function proposals() {
@@ -18,13 +16,13 @@ function proposals() {
   if (!isAuthenticated) return <Login />
 
   return (
-    <div className="h-screen overflow-hidden bg-gradient-to-b from-white  via-white to-blue-300 ">
+    <div className="h-screen overflow-y-scroll bg-gradient-to-b from-white via-white  to-blue-300 scrollbar-hide ">
       <Head>
         <title>Construction DAO - New Prop</title>
         <link rel="icon" href="/cdao-fin.svg" />
       </Head>
       <TopFix />
-      <main className="flex h-screen overflow-y-scroll scrollbar-hide">
+      <main className="flex h-screen ">
         <ProposalPage />
       </main>
     </div>

@@ -1,50 +1,65 @@
 import { useState } from 'react'
 import { useMoralisFile, useMoralis } from 'react-moralis'
-// import { TokenABI, TokenAddress } from '../../contracts/TokenContract'
-// import {
-//   MarketplaceABI,
-//   marketplaceAddress,
-// } from '../../contracts/MarketplaceContract'
-import UploadConfirmed from './Mints/UploadConfirmed'
-import PictureDone from './Mints/PictureDone'
-import UploadStarted from './Mints/UploadStarted'
+import { CDAOABI, CDAOAddress } from '../contracts/CDAOContract'
+import {
+  ConstructionABI,
+  ConstructionAddress,
+} from '../contracts/proposalContract'
+import { DAIABI, DAIAddress } from '../contracts/DAIContract'
 
 function MintVote() {
   const { saveFile } = useMoralisFile()
   const { account, Moralis, user } = useMoralis()
-  //   async function contractCall(object) {
-  //     const web3Provider = await Moralis.enableWeb3()
-  //     const ethers = Moralis.web3Library
 
-  //     const contract = new ethers.Contract(
-  //       TokenAddress,
-  //       TokenABI,
-  //       web3Provider.getSigner()
-  //     )
+  async function contractCall(object) {
+    const web3Provider = await Moralis.enableWeb3()
+    const ethers = Moralis.web3Library
 
-  //     const price = ethers.utils.parseEther(object.get('recordPrice').toString())
+    const contractCDAO = new ethers.Contract(
+      CDAOAddress,
+      CDAOABI,
+      web3Provider.getSigner()
+    )
 
-  //     contract
-  //       .createAlbum(
-  //         object.id,
-  //         object.get('recordCount'),
-  //         '4',
-  //         price,
-  //         object.get('royaltyPrice')
-  //       )
-  //       .then((result) => {
-  //         contract.setApprovalForAll(marketplaceAddress, true)
-  //         alert(
-  //           'successful, please confirm direct approval for marketplace via metamask'
-  //         )
-  //         setUploadDone(true)
-  //         alert(
-  //           "You find the item in your collection. From there you'll be able to list it on the marketplace"
-  //         )
-  //       })
-  //   }
+    const contractDAI = new ethers.Contract(
+      DAIAddress,
+      DAIABI,
+      web3Provider.getSigner()
+    )
+
+    const numberOfTokens = document.getElementById('numberOfTokens').value
+
+    contractDAI
+      .approve(CDAOAddress, ethers.utils.parseEther(numberOfTokens))
+      .then((result) => {
+        contractCDAO.mint(numberOfTokens)
+        alert('successful')
+      })
+
+    // const price = ethers.utils.parseEther(object.get('recordPrice').toString())
+
+    // contract.approve
+    //   .createAlbum(
+    //     object.id,
+    //     object.get('recordCount'),
+    //     '4',
+    //     price,
+    //     object.get('royaltyPrice')
+    //   )
+    //   .then((result) => {
+    //     contract.setApprovalForAll(marketplaceAddress, true)
+    //     alert(
+    //       'successful, please confirm direct approval for marketplace via metamask'
+    //     )
+    //     setUploadDone(true)
+    //     alert(
+    //       "You find the item in your collection. From there you'll be able to list it on the marketplace"
+    //     )
+    //   })
+  }
+
   async function createVote() {
-    const numberOfVotes = document.getElementById('numberOfVotes').value
+    const numberOfVotes = document.getElementById('numberOfTokens').value
 
     const metadata = {
       name: numberOfVotes,
@@ -60,7 +75,7 @@ function MintVote() {
 
     votes.set('numberOfVotes', numberOfVotes)
     votes.save().then((object) => {
-      // contractCall(object)
+      contractCall(object)
       console.log(object)
     })
   }
@@ -83,8 +98,8 @@ function MintVote() {
               </p>
               <div className="z-50 flex w-4/12 max-w-2xl flex-col rounded-xl border-2 border-blue-300/50 bg-transparent px-4 py-1 opacity-95 shadow-xl hover:border-blue-800 ">
                 <input
-                  name="numberOfVotes"
-                  id="numberOfVotes"
+                  name="numberOfTokens"
+                  id="numberOfTokens"
                   type="number"
                   placeholder="Number Of Votes"
                   className="outline:none bg-transparent text-center focus:outline-none"

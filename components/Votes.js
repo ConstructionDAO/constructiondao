@@ -49,21 +49,7 @@ function Votes() {
     setIsVotes(true)
     setMintVotes(false)
   }
-  // function openMintVote() {
-  //   setMinting(true)
-  //   setVoted(false)
-  //   setVoteBalance(false)
-  // }
-  // function openVoted() {
-  //   setMinting(false)
-  //   setVoted(true)
-  //   setVoteBalance(false)
-  // }
-  // function viewVoteBalance() {
-  //   setMinting(false)
-  //   setVoted(false)
-  //   setVoteBalance(true)
-  // }
+
   return (
     <div className="flex h-screen w-full flex-col items-center">
       <div className="flex flex-row space-x-48">
@@ -81,22 +67,18 @@ function Votes() {
         )}
         {mintVotes ? (
           <h1 className="mt-4 mb-8 text-xl font-extrabold italic text-gray-600 underline">
-            Mint Votes
+            Mint CDAO
           </h1>
         ) : (
           <h1
             onClick={modalMintVote}
             className="mt-4 mb-8 text-xl font-extrabold italic text-gray-600 hover:cursor-pointer"
           >
-            Mint Votes
+            Mint CDAO
           </h1>
         )}
       </div>
-      <div className="flex flex-row space-x-16">
-        {/* {<button onClick={openVoted}>voted</button>} */}
-        {/* {<button onClick={openMintVote}>get votes</button>}
-        {<button onClick={viewVoteBalance}>vote balance</button>} */}
-      </div>
+      <div className="flex flex-row space-x-16"></div>
       {isVotes ? (
         <div className=" flex w-9/12 flex-col items-center justify-center">
           {proposal.map((data, index) => (
@@ -108,14 +90,6 @@ function Votes() {
           <MintVote />
         </div>
       )}
-      {/* {minting && <MintVote />}
-      {voteBalance && (
-        <div className="flex w-4/12 flex-col items-center rounded-xl border-r border-b-2 border-white shadow-xl">
-          <h1 className="my-4 ">Vote Balance</h1>
-          <NativeBalance />
-          <ERC20Balances />
-        </div>
-      )} */}
     </div>
   )
 }

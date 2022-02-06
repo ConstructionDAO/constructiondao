@@ -19,7 +19,7 @@ function CardProjects(props) {
         <div className="relative ml-6 flex w-6/12 flex-col items-center">
           <h1 className=" my-2">{props.data.get('projectTitle')}</h1>
           <Image
-            src={props.data.get('projectPicture')}
+            src={props.data.get('projectPicture') || '/cdao-fin.svg'}
             width={100}
             height={100}
             className="rounded-xl"
