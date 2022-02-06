@@ -18,7 +18,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       <MoralisProvider
         appId={APP_ID}
         serverUrl={SERVER_URL}
-        initializeOnMount={false}
+        initializeOnMount={true}
       >
         <MoralisDappProvider>
           {/* <App isServerInfo /> */}
