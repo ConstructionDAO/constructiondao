@@ -108,7 +108,7 @@ function MintVote() {
                 className="text-xs text-gray-800 hover:cursor-pointer"
                 onClick={getDAI}
               >
-                Need Testnet DAI? Click here.
+                Need Testnet DAI? Click here
               </p>
             </div>
           </div>
