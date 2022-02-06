@@ -1,0 +1,278 @@
+Moralis.Cloud.define("api", async(request) => {
+ 
+     return ({
+    "title": "Asset Metadata",
+    "type": "object",
+    "properties": {
+        "name": {
+            "type": "string",
+            "description": "CDAO Token"     
+        },
+        "description": {
+            "type": "string",
+            "description": "Construction DOA Governance Token"
+        }
+      
+      ,
+        "image": {
+            "type": "string",
+            "description":"ipfs://QmaUv4XCmSYoWGqFRncKTJiB3ZHbizrxVBm8g5btRkPTGc/construction.jpg"  
+        }
+    }
+})
+  
+});
+
+
+Moralis.Cloud.afterSave("ProposalCreated", async function(request) {
+  const proposalId = request.object.get("proposalId"); 
+  const Proposal =  Moralis.Object.extend("Proposal");
+  const query = new Moralis.Query(Proposal)
+  query.equalTo("objectId",proposalId);
+  const logger = Moralis.Cloud.getLogger();
+  logger.info(`The Parameters from contract ${JSON.stringify(request)}`); 
+  
+  if(request.object.get("confirmed") !=true)
+   {  
+      logger.info(`The object is confirmed ${JSON.stringify(request)}`); 
+  
+      const result =  await query.first({useMasterKey:true});
+      result.set("active",true);
+      result.set("status",1);
+      result.save(null,{useMasterKey:true});
+   }
+ });
+
+
+Moralis.Cloud.afterSave("ProposalCancelled", async function(request) {
+  const proposalId = request.object.get("proposalId"); 
+  const Proposal =  Moralis.Object.extend("Proposal");
+  const query = new Moralis.Query(Proposal)
+  query.equalTo("objectId",proposalId);
+  const logger = Moralis.Cloud.getLogger();
+  logger.info(`The Parameters from contract ${JSON.stringify(request)}`); 
+  
+  if(request.object.get("confirmed") !=true)
+   {  
+      logger.info(`The object is confirmed ${JSON.stringify(request)}`); 
+  
+      const result =  await query.first({useMasterKey:true});
+      result.set("active",true);
+      result.set("status",2);
+      result.save(null,{useMasterKey:true});
+   }
+ });
+
+
+
+
+Moralis.Cloud.afterSave("ProposalAccepted", async function(request) {
+  const proposalId = request.object.get("proposalId"); 
+  const Proposal =  Moralis.Object.extend("Proposal");
+  const query = new Moralis.Query(Proposal)
+  query.equalTo("objectId",proposalId);
+  const logger = Moralis.Cloud.getLogger();
+  logger.info(`The Parameters from contract ${JSON.stringify(request)}`); 
+  
+  if(request.object.get("confirmed") !=true)
+   {  
+      logger.info(`The object is confirmed ${JSON.stringify(request)}`); 
+  
+      const result =  await query.first({useMasterKey:true});
+      result.set("active",true);
+      result.set("status",3);
+      result.save(null,{useMasterKey:true});
+   }
+ });
+
+
+Moralis.Cloud.afterSave("ProposalRejected", async function(request) {
+  const proposalId = request.object.get("proposalId"); 
+  const Proposal =  Moralis.Object.extend("Proposal");
+  const query = new Moralis.Query(Proposal)
+  query.equalTo("objectId",proposalId);
+  const logger = Moralis.Cloud.getLogger();
+  logger.info(`The Parameters from contract ${JSON.stringify(request)}`); 
+  
+  if(request.object.get("confirmed") !=true)
+   {  
+      logger.info(`The object is confirmed ${JSON.stringify(request)}`); 
+  
+      const result =  await query.first({useMasterKey:true});
+      result.set("active",true);
+      result.set("status",4);
+      result.save(null,{useMasterKey:true});
+   }
+ });
+
+
+Moralis.Cloud.afterSave("ProposalFunded", async function(request) {
+  const proposalId = request.object.get("proposalId"); 
+  const Proposal =  Moralis.Object.extend("Proposal");
+  const query = new Moralis.Query(Proposal)
+  query.equalTo("objectId",proposalId);
+  const logger = Moralis.Cloud.getLogger();
+  logger.info(`The Parameters from contract ${JSON.stringify(request)}`); 
+  
+  if(request.object.get("confirmed") !=true)
+   {  
+      logger.info(`The object is confirmed ${JSON.stringify(request)}`); 
+  
+      const result =  await query.first({useMasterKey:true});
+      result.set("active",true);
+      result.set("status",5);
+      result.save(null,{useMasterKey:true});
+   }
+ });
+
+
+
+Moralis.Cloud.afterSave("Voted", async function(request) {
+  const proposalId = request.object.get("proposalId"); 
+  const Proposal =  Moralis.Object.extend("Proposal");
+  const query = new Moralis.Query(Proposal)
+  query.equalTo("objectId",proposalId);
+  const logger = Moralis.Cloud.getLogger();
+  logger.info(`The Parameters from contract ${JSON.stringify(request)}`); 
+  
+  if(request.object.get("confirmed") !=true)
+   {  
+      logger.info(`The object is confirmed ${JSON.stringify(request)}`); 
+  
+      const result =  await query.first({useMasterKey:true});
+      if(request.object.get("vote")== true)
+      {
+          result.set("voteUp",result.get("voteUp")+1);
+      
+
+      }else
+      {
+          result.set("voteDown",result.get("voteDown")+1);
+      }
+     
+      result.save(null,{useMasterKey:true});
+   }
+ });
+
+
+Moralis.Cloud.define("getProposals", async(request) => {
+   const {voter}  = request.params;
+   const query = new Moralis.Query("Proposal");
+  query.equalTo("active",true);
+   const pipeline = [
+         
+{lookup: {
+      from: "Voted",
+      let: { proposalId: "$_id"},
+
+       pipeline: [
+        {$match: {$expr: {$and: [
+          { $eq: ["$voter", voter] },
+          { $eq: ["$proposalId", "$$proposalId"] }
+      ]}}}],
+      as: "voted"
+    }},{unwind:{path:"$voted",preserveNullAndEmptyArrays: true
+}},
+      
+     {project: {objectId:1,projectPicture:1,fundingGoal:1,projectPDF:1,createdAt:1,description:1,projectTitle:1,voteUp:1,
+     voteDown:1,active:1,status:1,projectFounder:1,walletAddress:1,numberOfDays:1,vote:"$voted.vote"}}
+     , { sort : {  createdAt: -1 }   } 
+    ];
+  
+  return query.aggregate(pipeline);
+}); 
+
+
+Moralis.Cloud.define("getMyProposals", async(request) => {
+   const {voter}  = request.params;
+   const query = new Moralis.Query("Proposal");
+  query.equalTo("active",true);
+  query.equalTo("walletAddress",voter);
+   query.descending("createdAt");
+   const pipeline = [
+         
+{lookup: {
+      from: "Voted",
+      let: { proposalId: "$_id"},
+
+       pipeline: [
+        {$match: {$expr: {$and: [
+          { $eq: ["$voter", voter] },
+          { $eq: ["$proposalId", "$$proposalId"] }
+      ]}}}],
+      as: "voted"
+    }},{unwind:{path:"$voted",preserveNullAndEmptyArrays: true
+}},
+      
+     {project: {objectId:1,projectPicture:1,fundingGoal:1,projectPDF:1,createdAt:1,description:1,projectTitle:1,voteUp:1,
+     voteDown:1,active:1,status:1,projectFounder:1,walletAddress:1,numberOfDays:1,vote:"$voted.vote"}}
+     , { sort : {  createdAt: -1 }  }
+    ];
+  
+  return query.aggregate(pipeline);
+});
+
+
+Moralis.Cloud.define("getMyVotes", async(request) => {
+   const {voter}  = request.params;
+   const query = new Moralis.Query("Proposal");
+  query.equalTo("active",true);
+   query.descending("createdAt");
+   const pipeline = [
+         
+{lookup: {
+      from: "Voted",
+      let: { proposalId: "$_id"},
+
+       pipeline: [
+        {$match: {$expr: {$and: [
+          { $eq: ["$voter", voter] },
+          { $eq: ["$proposalId", "$$proposalId"] }
+      ]}}}],
+      as: "voted"
+    }},{unwind:{path:"$voted"
+}},
+      
+     {project: {objectId:1,projectPicture:1,fundingGoal:1,projectPDF:1,createdAt:1,description:1,projectTitle:1,voteUp:1,
+     voteDown:1,active:1,status:1,projectFounder:1,walletAddress:1,numberOfDays:1,vote:"$voted.vote"}}
+     , { sort : {  createdAt: -1 } } 
+    ];
+  
+  return query.aggregate(pipeline);
+}); 
+
+
+Moralis.Cloud.define("treasuryValue", async(request) => {
+ const PolygonTokenBalance = Moralis.Object.extend("PolygonTokenBalance");
+ const query = new Moralis.Query(PolygonTokenBalance);
+ query.equalTo("address","0x36ba2c3651ec2d301419710922604fdfa5303f10");
+ const result = await query.first({useMasterKey:true});
+ if(result)
+ {  
+   const value = Moralis.Cloud.units({
+  method: "fromWei",
+  value: result.get("balance")
+  });
+   return value;
+  
+ }
+ else
+  return 0;
+});
+
+Moralis.Cloud.define("projectsFunded", async(request) => {
+  const ProposalFunded = Moralis.Object.extend("ProposalFunded");
+  const  query = new Moralis.Query(ProposalFunded);
+  const count = await query.count();
+  return count;
+});
+
+Moralis.Cloud.define("fundedTotal", async(request) => {
+   const ProposalFunded = Moralis.Object.extend("ProposalFunded");
+   const  query = new Moralis.Query(ProposalFunded);
+   const pipeline = [
+    { group: { objectId: null, total: { $sum: {$toLong : '$fundingGoal'} } } }
+   ];
+  
+  return query.aggregate(pipeline);
+});
