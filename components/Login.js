@@ -10,7 +10,7 @@ function Login() {
   const { authenticate } = useMoralis()
 
   return (
-    <div className="z-50 h-screen bg-gradient-to-b from-white  via-white to-blue-300">
+    <div className="z-50 bg-gradient-to-b from-white  via-white to-blue-300">
       <Head>
         <title>Construction DAO - Login</title>
         <link rel="icon" href="/cdao-fin.svg" />
